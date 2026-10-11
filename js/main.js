@@ -107,10 +107,10 @@
   });
 
   /* ---------- Visionneuse photos ---------- */
-  var lb = $('#lb'), lbImg = $('#lbImg'), lbCap = $('#lbCap');
+  var lb = $('#lb'), lbImg = $('#lbImg');
   $$('.shot').forEach(function (s) {
     s.addEventListener('click', function () {
-      lbImg.src = s.getAttribute('data-src'); lbImg.alt = $('img', s).alt; lbCap.textContent = s.getAttribute('data-cap');
+      lbImg.src = s.getAttribute('data-src'); lbImg.alt = $('img', s).alt;
       if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
     });
   });
@@ -131,4 +131,140 @@
       else { toast(data.url); }
     });
   });
+
+  /* ---------- Formulaire de présence ---------- */
+  var form = $('#rsvp');
+  if (form) {
+    var yesOnly = $('#yesOnly'), thanks = $('#thanks'), statusEl = $('#formStatus'), btn = $('#submitBtn');
+    var persons = $('#f-persons');
+    var checks = $$('input[name=act]', form);
+
+    function presenceValue() { return $('input[name=presence]:checked', form).value; }
+    function applyPresence() { yesOnly.hidden = presenceValue() !== 'Oui'; }
+    $$('input[name=presence]', form).forEach(function (r) { r.addEventListener('change', applyPresence); });
+    applyPresence();
+
+    // « Tout cocher » par journée
+    $$('.linkbtn', form).forEach(function (b) {
+      b.addEventListener('click', function () {
+        var prefix = b.getAttribute('data-all') + '-';
+        var group = checks.filter(function (c) { return c.value.indexOf(prefix) === 0; });
+        var all = group.every(function (c) { return c.checked; });
+        group.forEach(function (c) { c.checked = !all; });
+        b.textContent = all ? 'Tout cocher' : 'Tout décocher';
+        setErr('acts', '');
+      });
+    });
+    checks.forEach(function (c) { c.addEventListener('change', function () { setErr('acts', ''); }); });
+
+    // Nombre de personnes
+    function clampPersons() {
+      var n = parseInt(persons.value, 10);
+      persons.value = isNaN(n) ? 1 : Math.max(1, Math.min(50, n));
+    }
+    persons.addEventListener('change', clampPersons);
+    $$('[data-step]', form).forEach(function (b) {
+      b.addEventListener('click', function () { clampPersons(); persons.value = +persons.value + (+b.getAttribute('data-step')); clampPersons(); });
+    });
+
+    function setErr(key, msg) {
+      var p = $('[data-err=' + key + ']', form); if (!p) return;
+      p.textContent = msg;
+      var f = p.closest('.field'); if (f) f.classList.toggle('has-err', !!msg);
+    }
+    $('#f-name').addEventListener('input', function () { setErr('name', ''); });
+
+    function selectedActivities() {
+      return checks.filter(function (c) { return c.checked; }).map(function (c) {
+        var lab = c.closest('.act');
+        return { id: c.value, time: (c.value.indexOf('ven-') === 0 ? 'Ven. ' : 'Sam. ') + $('.act__time', lab).textContent.replace(/\s/g, ''), label: $('.act__body b', lab).textContent };
+      });
+    }
+
+    function validate() {
+      var ok = true, first = null;
+      var name = $('#f-name').value.trim();
+      if (name.length < 2) { setErr('name', 'Merci d\'indiquer votre nom.'); ok = false; first = $('#f-name'); }
+      if (presenceValue() === 'Oui' && !selectedActivities().length) {
+        setErr('acts', 'Cochez au moins un moment, ou choisissez « de cœur avec vous ».'); ok = false;
+        first = first || $('.acts', form);
+      }
+      if (first) { first.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); if (first.focus && first.tagName === 'INPUT') first.focus({ preventScroll: true }); }
+      return ok;
+    }
+
+    function setStatus(msg, isErr) { statusEl.textContent = msg; statusEl.classList.toggle('is-err', !!isErr); }
+
+    function showThanks(payload, acts) {
+      var yes = payload.presence === 'Oui';
+      $('#thanksTitle').textContent = 'Merci, ' + payload.name;
+      $('#thanksText').textContent = yes
+        ? 'Votre présence est bien enregistrée. La famille a hâte de vous accueillir.'
+        : 'Votre message a bien été reçu. La famille sera touchée de savoir que vous êtes de cœur avec elle.';
+      var ul = $('#thanksList'); ul.textContent = '';
+      if (yes) {
+        acts.forEach(function (a) {
+          var li = document.createElement('li'), b = document.createElement('b'), s = document.createElement('span');
+          b.textContent = a.time; s.textContent = a.label; li.appendChild(b); li.appendChild(s); ul.appendChild(li);
+        });
+        if (payload.persons > 1) {
+          var li2 = document.createElement('li'); li2.textContent = payload.persons + ' personnes au total'; ul.appendChild(li2);
+        }
+      }
+      form.hidden = true; thanks.hidden = false;
+      thanks.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    }
+
+    $('#editAnswer').addEventListener('click', function () {
+      thanks.hidden = true; form.hidden = false; setStatus('');
+      form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      setStatus('');
+      if (!validate()) return;
+      clampPersons();
+
+      var yes = presenceValue() === 'Oui', acts = yes ? selectedActivities() : [];
+      var payload = {
+        name: $('#f-name').value.trim(),
+        phone: $('#f-phone').value.trim(),
+        city: $('#f-city').value.trim(),
+        presence: presenceValue(),
+        persons: yes ? +persons.value : 0,
+        activities: acts.map(function (a) { return a.id; }),
+        message: $('#f-msg').value.trim(),
+        website: $('input[name=website]', form).value // champ piège : vide chez un vrai visiteur
+      };
+
+      var url = (window.HOMMAGE_CONFIG || {}).formEndpoint;
+      if (!url) {
+        console.warn('formEndpoint manquant dans js/config.js');
+        setStatus('Le formulaire n\'est pas encore activé. Merci de réessayer un peu plus tard.', true);
+        return;
+      }
+
+      btn.disabled = true; btn.classList.add('busy'); setStatus('Envoi en cours');
+      var ctrl = window.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 25000);
+
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // évite la pré-requête CORS (Apps Script)
+        body: JSON.stringify(payload),
+        signal: ctrl ? ctrl.signal : undefined
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (!res || !res.ok) throw new Error((res && res.error) || 'refus');
+          setStatus('');
+          showThanks(payload, acts);
+        })
+        .catch(function () {
+          setStatus('L\'envoi n\'a pas abouti. Vérifiez votre connexion puis réessayez : vos réponses sont conservées.', true);
+        })
+        .then(function () { clearTimeout(timer); btn.disabled = false; btn.classList.remove('busy'); });
+    });
+  }
 })();

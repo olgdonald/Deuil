@@ -39,6 +39,9 @@
     <li><a href="#lieux" data-spy="lieux">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.4 6-10a6 6 0 0 0-12 0c0 4.600 6 10 6 10z"/><circle cx="12" cy="11" r="2.200"/></svg>
       <span>Lieux</span></a></li>
+    <li><a href="#presence" data-spy="presence">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.500"/><path d="M8.500 12.200l2.500 2.500 4.600-5"/></svg>
+      <span>Présence</span></a></li>
     <li><a href="#merci" data-spy="merci">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V7a5 5 0 0 1 10 0v4"/><path d="M5 11h14l-1.200 9H6.200z"/></svg>
       <span>Merci</span></a></li>
@@ -75,13 +78,16 @@
     <cite>Jean 11:25</cite>
   </blockquote>
 
-  <div class="countdown reveal" id="countdown" style="--d:.4s" aria-live="polite">
+  <div class="hero__cd reveal" style="--d:.4s">
+  <div class="countdown" id="countdown" aria-live="polite">
     <p class="countdown__label">Levée de corps · vendredi 30 octobre, 10h00</p>
     <div class="countdown__grid" id="cdGrid">
       <div><b data-u="d">--</b><span>jours</span></div>
       <div><b data-u="h">--</b><span>heures</span></div>
       <div><b data-u="m">--</b><span>minutes</span></div>
     </div>
+  </div>
+    <a class="btn btn--gold hero__cta" href="#presence"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.500"/><path d="M8.500 12.200l2.500 2.500 4.600-5"/></svg> Confirmer ma présence</a>
   </div>
 
   <a class="scrollcue" href="#faire-part" aria-label="Descendre">
@@ -146,9 +152,9 @@
     <div class="souvenirs reveal">
       <h3>Souvenirs</h3>
       <div class="souvenirs__rail" id="rail">
-        <button class="shot" data-src="assets/souvenir-or.jpg" data-cap="« J'ai combattu le bon combat, j'ai achevé la course, j'ai gardé la foi. » — 2 Timothée 4:7"><img src="assets/souvenir-or.jpg" alt="Mme BaBo en robe dorée et foulard vert, les mains jointes"><span>Mains jointes</span></button>
-        <button class="shot" data-src="assets/souvenir-rose.jpg" data-cap="Mme BaBo, son sourire."><img src="assets/souvenir-rose.jpg" alt="Mme BaBo souriante en rose"><span>Son sourire</span></button>
-        <button class="shot" data-src="assets/souvenir-noir.jpg" data-cap="« Je suis la résurrection et la vie. » — Jean 11:25"><img src="assets/souvenir-noir.jpg" alt="Mme BaBo en foulard noir et écharpe rouge"><span>Son regard</span></button>
+        <button class="shot" data-src="assets/souvenir-or.jpg"><img src="assets/souvenir-or.jpg" alt="Mme BaBo en robe dorée et foulard vert, les mains jointes"></button>
+        <button class="shot" data-src="assets/souvenir-rose.jpg"><img src="assets/souvenir-rose.jpg" alt="Mme BaBo souriante en rose"></button>
+        <button class="shot" data-src="assets/souvenir-noir.jpg"><img src="assets/souvenir-noir.jpg" alt="Mme BaBo en foulard noir et écharpe rouge"></button>
       </div>
     </div>
   </div>
@@ -261,49 +267,47 @@
       </header>
 
       <figure class="map" id="mapEssos">
-        <svg viewBox="0 0 400 300" role="img" aria-label="Schéma de l'itinéraire depuis la Chapelle Essos jusqu'au domicile de la défunte, en passant devant CLICHY SOUS BOIS, puis au carrefour de PRO 1 ENGINEERING SARL, avec un virage à droite">
-          <defs>
-            <pattern id="blk" width="22" height="22" patternUnits="userSpaceOnUse"><rect x="3" y="3" width="16" height="16" rx="3" fill="#e5d9bc"/></pattern>
-          </defs>
-          <rect width="400" height="300" fill="#efe6cf"/>
-          <rect width="400" height="300" fill="url(#blk)" opacity=".55"/>
-          <!-- routes -->
-          <g fill="none" stroke="#fbf7ea" stroke-linecap="round">
-            <path d="M-10 215 L195 112 L410 38" stroke-width="22"/>
-            <path d="M70 -10 L205 118 L300 300" stroke-width="22"/>
-            <path d="M210 150 L410 260" stroke-width="0"/>
-            <path d="M195 112 L290 195 L410 150" stroke-width="22"/>
-          </g>
-          <g fill="none" stroke="#d6c79f" stroke-width="1.200" stroke-dasharray="5 6" stroke-linecap="round">
-            <path d="M-10 215 L195 112 L410 38"/><path d="M70 -10 L205 118 L300 300"/><path d="M195 112 L290 195 L410 150"/>
-          </g>
-          <!-- itinéraire -->
-          <path class="route" d="M48 112 L48 154 L112 154 L195 114 L285 190 L338 165" fill="none" stroke="#b5304f" stroke-width="3.500" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 9"/>
-          <!-- repères -->
-          <g font-family="Jost,sans-serif" font-size="13.5" font-weight="500" fill="#3d4b2a">
-            <g transform="translate(150 56)"><circle r="9" fill="#2a4a7a"/><path d="M-4 -2h8l-1 5h-6zM-3 -4l1 2" stroke="#fff" stroke-width="1.200" fill="none"/><text x="15" y="-2">CLICHY</text><text x="15" y="13">SOUS BOIS</text></g>
-            <g transform="translate(95 192)"><circle r="8" fill="#6b6b5a"/><circle r="3" fill="#efe6cf"/><text x="14" y="-2">PRO 1</text><text x="14" y="13">ENGINEERING SARL</text></g>
-            <g transform="translate(228 246)"><circle r="9" fill="#d8782a"/><path d="M-3 -4v8M-3 -4v3M0 -4v3M3 -4v8" stroke="#fff" stroke-width="1.200" fill="none"/><text x="0" y="28" text-anchor="middle">Hôtel Badenk</text></g>
-          </g>
-          <!-- Chapelle -->
-          <g transform="translate(48 112)">
-            <path d="M0 0c-10-14-18-20-18-30a18 18 0 0 1 36 0c0 10-8 16-18 30z" transform="translate(0 6)" fill="#b5304f" stroke="#fff" stroke-width="2"/>
-            <path d="M0-27v10M-4-23h8M-8-14l8-8 8 8v8h-16z" stroke="#fff" stroke-width="1.600" fill="none" stroke-linejoin="round" transform="translate(0 4)"/>
-          </g>
-          <text x="66" y="140" text-anchor="middle" font-family="Cormorant Garamond,serif" font-weight="700" font-size="17" fill="#15241a">Chapelle Essos</text>
-          <!-- Maison -->
-          <g transform="translate(338 165)">
-            <path d="M0 0c-10-14-18-20-18-30a18 18 0 0 1 36 0c0 10-8 16-18 30z" transform="translate(0 6)" fill="#15241a" stroke="#fff" stroke-width="2"/>
-            <path d="M-8-26l8-7 8 7M-6-26v9h12v-9" stroke="#e9b92d" stroke-width="1.800" fill="none" stroke-linejoin="round" transform="translate(0 4)"/>
-          </g>
-          <text text-anchor="middle" font-family="Cormorant Garamond,serif" font-weight="700" font-size="16" fill="#15241a"><tspan x="338" y="190">Domicile</tspan><tspan x="338" y="206">de la défunte</tspan></text>
-          <!-- rose des vents -->
-          <g transform="translate(364 40)" font-family="Cormorant Garamond,serif" font-size="11" font-weight="700" fill="#8a6217" text-anchor="middle">
-            <circle r="17" fill="#fbf7ea" stroke="#c99a2e" stroke-width="1"/>
-            <path d="M0-14L3 0 0 14-3 0z" fill="#c99a2e"/><path d="M-14 0L0-3 14 0 0 3z" fill="#e8d29a"/>
-            <text y="-20">N</text>
-          </g>
-        </svg>
+<svg viewBox="0 0 1055 700" role="img" aria-label="Plan : depuis la Chapelle Essos, prendre la route qui passe devant CLICHY SOUS BOIS jusqu'au carrefour de PRO 1 ENGINEERING SARL, tourner à droite (en passant près de l'Hôtel Badenk) et suivre la route jusqu'au domicile de la défunte">
+<defs>
+<marker id="arw" viewBox="0 0 12 12" refX="8" refY="6" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L12 6 0 12z" fill="#c0262d"/></marker>
+</defs>
+<rect width="1055" height="700" fill="#f8f1dc"/>
+<g><rect x="-31" y="-28" width="62" height="55" rx="8" fill="#e8e1cf" transform="translate(-36 713) rotate(-34.6)"/><rect x="-35" y="-27" width="70" height="54" rx="8" fill="#ebe5d3" transform="translate(-6 572) rotate(-34.6)"/><rect x="-31" y="-31" width="62" height="62" rx="8" fill="#efe3b9" transform="translate(47 652) rotate(-34.6)"/><rect x="-34" y="-40" width="68" height="80" rx="8" fill="#e3dcc8" transform="translate(97 737) rotate(-34.6)"/><rect x="-29" y="-28" width="57" height="55" rx="8" fill="#e3dcc8" transform="translate(-31 367) rotate(-34.6)"/><rect x="-30" y="-40" width="60" height="79" rx="8" fill="#e8e1cf" transform="translate(76 523) rotate(-34.6)"/><rect x="-36" y="-32" width="72" height="64" rx="8" fill="#efe3b9" transform="translate(122 602) rotate(-34.6)"/><rect x="-37" y="-38" width="74" height="75" rx="8" fill="#e9e2d0" transform="translate(174 681) rotate(-34.6)"/><rect x="-31" y="-36" width="62" height="72" rx="8" fill="#efe3b9" transform="translate(235 753) rotate(-34.6)"/><rect x="-32" y="-30" width="64" height="61" rx="8" fill="#f0e6c2" transform="translate(-12 238) rotate(-34.6)"/><rect x="-39" y="-37" width="79" height="73" rx="8" fill="#efe3b9" transform="translate(40 315) rotate(-34.6)"/><rect x="-35" y="-27" width="71" height="54" rx="8" fill="#f0e6c2" transform="translate(147 466) rotate(-34.6)"/><rect x="-32" y="-31" width="64" height="61" rx="8" fill="#f0e6c2" transform="translate(201 544) rotate(-34.6)"/><rect x="-39" y="-29" width="78" height="59" rx="8" fill="#e8e1cf" transform="translate(258 620) rotate(-34.6)"/><rect x="-36" y="-35" width="72" height="70" rx="8" fill="#e9e2d0" transform="translate(313 700) rotate(-34.6)"/><rect x="-31" y="-41" width="62" height="82" rx="8" fill="#e8e1cf" transform="translate(-46 17) rotate(-34.6)"/><rect x="-29" y="-41" width="58" height="81" rx="8" fill="#ebe5d3" transform="translate(11 103) rotate(-34.6)"/><rect x="-32" y="-33" width="65" height="67" rx="8" fill="#ebe5d3" transform="translate(67 182) rotate(-34.6)"/><rect x="-37" y="-28" width="73" height="56" rx="8" fill="#f0e6c2" transform="translate(119 259) rotate(-34.6)"/><rect x="-32" y="-35" width="65" height="70" rx="8" fill="#e3dcc8" transform="translate(227 411) rotate(-34.6)"/><rect x="-34" y="-27" width="68" height="54" rx="8" fill="#e6dfcc" transform="translate(280 489) rotate(-34.6)"/><rect x="-30" y="-36" width="61" height="72" rx="8" fill="#e3dcc8" transform="translate(337 570) rotate(-34.6)"/><rect x="-38" y="-32" width="76" height="64" rx="8" fill="#f0e6c2" transform="translate(396 655) rotate(-34.6)"/><rect x="-34" y="-33" width="68" height="66" rx="8" fill="#e9e2d0" transform="translate(33 -41) rotate(-34.6)"/><rect x="-38" y="-32" width="75" height="63" rx="8" fill="#e9e2d0" transform="translate(93 41) rotate(-34.6)"/><rect x="-27" y="-34" width="54" height="67" rx="8" fill="#e3dcc8" transform="translate(151 123) rotate(-34.6)"/><rect x="-40" y="-28" width="81" height="55" rx="8" fill="#e9e2d0" transform="translate(195 202) rotate(-34.6)"/><rect x="-35" y="-33" width="71" height="66" rx="8" fill="#e3dcc8" transform="translate(306 358) rotate(-34.6)"/><rect x="-33" y="-28" width="65" height="55" rx="8" fill="#e6dfcc" transform="translate(368 438) rotate(-34.6)"/><rect x="-32" y="-38" width="65" height="77" rx="8" fill="#efe3b9" transform="translate(412 514) rotate(-34.6)"/><rect x="-39" y="-30" width="77" height="60" rx="8" fill="#ebe5d3" transform="translate(469 602) rotate(-34.6)"/><rect x="-39" y="-30" width="78" height="59" rx="8" fill="#ebe5d3" transform="translate(575 753) rotate(-34.6)"/><rect x="-28" y="-32" width="57" height="64" rx="8" fill="#e3dcc8" transform="translate(304 13) rotate(-34.6)"/><rect x="-38" y="-35" width="75" height="69" rx="8" fill="#f0e6c2" transform="translate(358 87) rotate(-34.6)"/><rect x="-38" y="-31" width="76" height="62" rx="8" fill="#e8e1cf" transform="translate(462 255) rotate(-34.6)"/><rect x="-32" y="-32" width="64" height="64" rx="8" fill="#e6dfcc" transform="translate(523 328) rotate(-34.6)"/><rect x="-32" y="-27" width="64" height="55" rx="8" fill="#f0e6c2" transform="translate(381 -34) rotate(-34.6)"/><rect x="-28" y="-34" width="55" height="68" rx="8" fill="#efe3b9" transform="translate(437 45) rotate(-34.6)"/><rect x="-31" y="-30" width="63" height="59" rx="8" fill="#efe3b9" transform="translate(545 199) rotate(-34.6)"/><rect x="-34" y="-29" width="68" height="59" rx="8" fill="#f0e6c2" transform="translate(604 279) rotate(-34.6)"/><rect x="-40" y="-34" width="80" height="67" rx="8" fill="#e9e2d0" transform="translate(871 665) rotate(-34.6)"/><rect x="-39" y="-41" width="78" height="81" rx="8" fill="#e8e1cf" transform="translate(927 751) rotate(-34.6)"/><rect x="-30" y="-40" width="60" height="80" rx="8" fill="#e8e1cf" transform="translate(514 -17) rotate(-34.6)"/><rect x="-27" y="-36" width="54" height="71" rx="8" fill="#e9e2d0" transform="translate(623 142) rotate(-34.6)"/><rect x="-34" y="-39" width="67" height="78" rx="8" fill="#efe3b9" transform="translate(684 223) rotate(-34.6)"/><rect x="-27" y="-31" width="55" height="61" rx="8" fill="#e9e2d0" transform="translate(953 619) rotate(-34.6)"/><rect x="-36" y="-31" width="71" height="63" rx="8" fill="#e8e1cf" transform="translate(1009 691) rotate(-34.6)"/><rect x="-36" y="-38" width="72" height="77" rx="8" fill="#ebe5d3" transform="translate(700 82) rotate(-34.6)"/><rect x="-34" y="-37" width="69" height="74" rx="8" fill="#e8e1cf" transform="translate(757 172) rotate(-34.6)"/><rect x="-32" y="-32" width="64" height="64" rx="8" fill="#efe3b9" transform="translate(1083 646) rotate(-34.6)"/><rect x="-30" y="-28" width="60" height="56" rx="8" fill="#e8e1cf" transform="translate(780 34) rotate(-34.6)"/><rect x="-39" y="-31" width="77" height="61" rx="8" fill="#efe3b9" transform="translate(838 108) rotate(-34.6)"/><rect x="-40" y="-35" width="80" height="71" rx="8" fill="#ebe5d3" transform="translate(1113 506) rotate(-34.6)"/><rect x="-35" y="-32" width="70" height="64" rx="8" fill="#efe3b9" transform="translate(865 -19) rotate(-34.6)"/><rect x="-38" y="-38" width="76" height="76" rx="8" fill="#f0e6c2" transform="translate(914 52) rotate(-34.6)"/><rect x="-29" y="-30" width="58" height="60" rx="8" fill="#ebe5d3" transform="translate(1081 299) rotate(-34.6)"/><rect x="-33" y="-40" width="67" height="80" rx="8" fill="#e9e2d0" transform="translate(995 5) rotate(-34.6)"/><rect x="-39" y="-32" width="79" height="65" rx="8" fill="#e3dcc8" transform="translate(1075 -47) rotate(-34.6)"/></g>
+<rect x="55" y="150" width="150" height="165" rx="10" fill="#f6b9b4" opacity=".55" transform="rotate(-8 130 230)"/>
+<g><polyline points="170,-30 340,242 660,600 740,730" fill="none" stroke="#a9bccc" stroke-width="46" stroke-linejoin="round" stroke-linecap="butt"/><polyline points="30,470 340,245 700,-20" fill="none" stroke="#a9bccc" stroke-width="50" stroke-linejoin="round" stroke-linecap="butt"/><polyline points="556,486 772,345 1080,100" fill="none" stroke="#a9bccc" stroke-width="40" stroke-linejoin="round" stroke-linecap="butt"/><polyline points="470,730 650,585 1080,380" fill="none" stroke="#a9bccc" stroke-width="40" stroke-linejoin="round" stroke-linecap="butt"/></g>
+<!-- parcours -->
+<g fill="none" stroke="#c0262d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+<path class="route" d="M112 268 L112 300 L156 326 L316 240" stroke-dasharray="18 12" marker-end="url(#arw)"/>
+<path class="route" d="M338 244 L554 484 L762 346" stroke-dasharray="18 12" marker-end="url(#arw)"/>
+</g>
+<!-- repères -->
+<g font-family="Jost,Segoe UI,sans-serif" font-weight="500" font-size="38" fill="#232b24">
+<g><circle cx="437" cy="112" r="30" fill="#1f7ae0"/><path d="M424 102h5l5 14h14l4-10h-24" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="436" cy="123" r="2.8" fill="#fff"/><circle cx="450" cy="123" r="2.8" fill="#fff"/>
+<text x="398" y="104" text-anchor="end" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">CLICHY</text><text x="398" y="144" text-anchor="end" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">SOUS BOIS</text></g>
+<g><circle cx="247" cy="357" r="25" fill="#6e7780"/><circle cx="247" cy="357" r="10" fill="#f8f1dc"/>
+<text x="290" y="352" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">PRO 1</text><text x="290" y="392" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">ENGINEERING SARL</text></g>
+<g><circle cx="522" cy="508" r="28" fill="#f08a1c"/><path d="M512 495v26M508 495v10a4 4 0 0 0 8 0v-10M530 495c-6 4-6 14-1 18v8" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="480" y="522" text-anchor="end" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">Hôtel Badenk</text></g>
+</g>
+<!-- chapelle -->
+<g transform="translate(112 252)">
+<path d="M0 0C-16-24-36-42-36-66a36 36 0 0 1 72 0C36-42 16-24 0 0z" fill="#c9262d" stroke="#fff" stroke-width="4"/>
+<circle cy="-66" r="13" fill="#fff"/><circle r="9" cy="6" fill="#a46c14" stroke="#fff" stroke-width="3"/></g>
+<text x="170" y="222" font-family="Cormorant Garamond,Georgia,serif" font-weight="700" font-size="48" fill="#15241a" paint-order="stroke" stroke="#f8f1dc" stroke-width="9" stroke-linejoin="round">Chapelle Essos</text>
+<!-- domicile -->
+<g transform="translate(780 352)">
+<path d="M0 0C-16-24-36-42-36-66a36 36 0 0 1 72 0C36-42 16-24 0 0z" fill="#15281c" stroke="#fff" stroke-width="4"/>
+<path d="M-17-66L0-82 17-66M-12-68v18h24v-18" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g transform="translate(615 396)"><rect width="420" height="118" rx="16" fill="#fbf6e6" stroke="#c99a2e" stroke-width="3"/>
+<text x="210" y="52" text-anchor="middle" font-family="Cormorant Garamond,Georgia,serif" font-weight="700" font-size="38" fill="#15241a">Domicile de la défunte</text>
+<text x="210" y="92" text-anchor="middle" font-family="Jost,Segoe UI,sans-serif" font-size="30" fill="#2c382d">Chapelle Essos, Yaoundé</text></g>
+<!-- rose des vents -->
+<g transform="translate(940 78)" font-family="Cormorant Garamond,Georgia,serif" font-weight="700" font-size="30" fill="#8a6217" text-anchor="middle">
+<circle r="52" fill="#fbf6e6" stroke="#c99a2e" stroke-width="2.5"/>
+<path d="M0-46L10 0 0 46-10 0z" fill="#c99a2e"/><path d="M-46 0L0-10 46 0 0 10z" fill="#e6cf8f"/>
+<path d="M0-30L7 0 0 30-7 0z" fill="#8a6217" transform="rotate(45)"/>
+<text y="-62">N</text></g>
+</svg>
         <figcaption>Schéma non à l'échelle</figcaption>
       </figure>
 
@@ -372,6 +376,93 @@
   </div>
 </section>
 
+<!-- ============ PRÉSENCE ============ -->
+<section class="paper rsvp" id="presence" data-section="presence">
+  <div class="wrap wrap--narrow">
+    <p class="eyebrow reveal">Confirmer sa présence</p>
+    <h2 class="display display--ink reveal">Serez-vous <em>des nôtres</em>&nbsp;?</h2>
+    <p class="rsvp__lead reveal">Pour permettre à la famille d'organiser au mieux l'accueil de chacun, merci de nous indiquer les moments auxquels vous serez présent(e). Cela ne prend qu'une minute.</p>
+
+    <form class="form reveal" id="rsvp" novalidate autocomplete="on">
+      <fieldset class="choice">
+        <legend class="sr">Serez-vous présent(e) ?</legend>
+        <label><input type="radio" name="presence" value="Oui" checked><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.500l4.500 4.500L19 7.500"/></svg>Je serai présent(e)</span></label>
+        <label><input type="radio" name="presence" value="Non"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7-4.600-7-10.200A4 4 0 0 1 12 7a4 4 0 0 1 7 2.800C19 15.400 12 20 12 20z"/></svg>Je serai de cœur avec vous</span></label>
+      </fieldset>
+
+      <div class="field">
+        <label for="f-name">Nom et prénom(s) <b aria-hidden="true">*</b></label>
+        <input id="f-name" name="name" type="text" autocomplete="name" maxlength="120" required placeholder="Ex. : Marie NGONO">
+        <p class="field__err" data-err="name"></p>
+      </div>
+      <div class="field">
+        <label for="f-phone">Téléphone / WhatsApp</label>
+        <input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="30" placeholder="+237 6 00 00 00 00">
+      </div>
+      <div class="field">
+        <label for="f-city">Ville ou pays de départ</label>
+        <input id="f-city" name="city" type="text" autocomplete="address-level2" maxlength="80" placeholder="Ex. : Douala, Paris, Montréal…">
+      </div>
+
+      <div class="yes-only" id="yesOnly">
+        <fieldset class="acts">
+          <legend>À quels moments serez-vous présent(e) ? <b aria-hidden="true">*</b></legend>
+
+          <div class="acts__day">
+            <h3>Vendredi 30 octobre <button type="button" class="linkbtn" data-all="ven">Tout cocher</button></h3>
+          <label class="act"><input type="checkbox" name="act" value="ven-levee"><span class="act__box" aria-hidden="true"></span><span class="act__time">10<sup>h</sup>00</span><span class="act__body"><b>Levée de corps</b><small>Hôpital de la Caisse, Essos – Yaoundé</small></span></label>
+          <label class="act"><input type="checkbox" name="act" value="ven-messe"><span class="act__box" aria-hidden="true"></span><span class="act__time">12<sup>h</sup>00</span><span class="act__body"><b>Messe d'action de grâce</b><small>Chapelle Essos, Yaoundé</small></span></label>
+          <label class="act"><input type="checkbox" name="act" value="ven-cortege"><span class="act__box" aria-hidden="true"></span><span class="act__time">14<sup>h</sup>00</span><span class="act__body"><b>Départ du cortège funèbre</b><small>Pour le village Balamba</small></span></label>
+          <label class="act"><input type="checkbox" name="act" value="ven-arrivee"><span class="act__box" aria-hidden="true"></span><span class="act__time">16<sup>h</sup>00</span><span class="act__body"><b>Arrivée et installation de la dépouille</b><small>Domicile familial, village Balamba</small></span></label>
+          <label class="act"><input type="checkbox" name="act" value="ven-veillee"><span class="act__box" aria-hidden="true"></span><span class="act__time">20<sup>h</sup>00</span><span class="act__body"><b>Messe, veillée funèbre et recueillement</b><small>Jusqu'à l'aube · village Balamba</small></span></label>
+          </div>
+          <div class="acts__day">
+            <h3>Samedi 31 octobre <button type="button" class="linkbtn" data-all="sam">Tout cocher</button></h3>
+          <label class="act"><input type="checkbox" name="act" value="sam-accueil"><span class="act__box" aria-hidden="true"></span><span class="act__time">09<sup>h</sup>00</span><span class="act__body"><b>Accueil et installation</b></span></label>
+          <label class="act"><input type="checkbox" name="act" value="sam-trad"><span class="act__box" aria-hidden="true"></span><span class="act__time">10<sup>h</sup>00</span><span class="act__body"><b>Ouverture des cérémonies traditionnelles</b></span></label>
+          <label class="act"><input type="checkbox" name="act" value="sam-messe"><span class="act__box" aria-hidden="true"></span><span class="act__time">12<sup>h</sup>00</span><span class="act__body"><b>Messe d'action de grâce</b><small>Suivie des témoignages et hommages</small></span></label>
+          <label class="act"><input type="checkbox" name="act" value="sam-inhum"><span class="act__box" aria-hidden="true"></span><span class="act__time">14<sup>h</sup>00</span><span class="act__body"><b>Inhumation</b><small>Dans la stricte intimité familiale</small></span><em class="act__badge">Famille proche</em></label>
+          <label class="act"><input type="checkbox" name="act" value="sam-collation"><span class="act__box" aria-hidden="true"></span><span class="act__time">14<sup>h</sup>30</span><span class="act__body"><b>Collation</b><small>Offerte aux invités</small></span></label>
+          </div>
+          <p class="field__err" data-err="acts"></p>
+        </fieldset>
+
+        <div class="field field--persons">
+          <label for="f-persons">Nombre de personnes <small>(vous inclus)</small></label>
+          <div class="stepper">
+            <button type="button" data-step="-1" aria-label="Retirer une personne">−</button>
+            <input id="f-persons" name="persons" type="number" min="1" max="50" value="1" inputmode="numeric">
+            <button type="button" data-step="1" aria-label="Ajouter une personne">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-msg">Un mot pour la famille <small>(facultatif)</small></label>
+        <textarea id="f-msg" name="message" rows="3" maxlength="600" placeholder="Vos pensées, un souvenir, un message de soutien…"></textarea>
+      </div>
+
+      <!-- champ piège contre les robots : ne pas remplir -->
+      <div class="hp" aria-hidden="true"><label>Site web <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <p class="form__note">Vos informations sont réservées à la famille et ne servent qu'à l'organisation des cérémonies.</p>
+      <button class="btn btn--submit" type="submit" id="submitBtn"><span>Envoyer ma réponse</span></button>
+      <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="thanks" id="thanks" hidden>
+      <div class="thanks__mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7.500"/></svg></div>
+      <h3 id="thanksTitle">Merci</h3>
+      <p id="thanksText"></p>
+      <ul id="thanksList"></ul>
+      <div class="thanks__actions">
+        <button class="btn btn--ghost" type="button" id="editAnswer">Modifier ma réponse</button>
+        <button class="btn js-share" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="2.500"/><circle cx="18" cy="6" r="2.500"/><circle cx="18" cy="18" r="2.500"/><path d="M8.300 10.900l7.400-3.800M8.300 13.100l7.400 3.800"/></svg> Prévenir un proche</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ REMERCIEMENTS ============ -->
 <section class="green merci" id="merci" data-section="merci">
   <img class="merci__branch merci__branch--l" src="assets/mimosa.svg" alt="" aria-hidden="true">
@@ -402,11 +493,11 @@
 <dialog class="lightbox" id="lb">
   <button class="lightbox__x" aria-label="Fermer" autofocus>×</button>
   <img alt="" id="lbImg">
-  <p id="lbCap"></p>
 </dialog>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="js/config.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>
